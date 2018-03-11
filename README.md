@@ -1,7 +1,7 @@
 <a href="https://github.com/Balintataw/ssp19-twittler"><img src="./resources/images/readmeScreenshot.PNG" style="max-width:100%;"/></a> 
 A recently discovered form of communication used by the Norse men of old. Eerily reminiscent of Twitter.
 
-Check it out here: https://balintataw.github.io/ssp19-twittler/
+Check it out here: https://balintataw.github.io/primitive-speech/
 
 Future plans : 
     <FIXED>Fix 'Go Back' button functionality to re add filtered tweets rather than refresh the page
