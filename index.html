@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Twittler</title>
+    <link href="./resources/style.css" type="text/css" rel="stylesheet" />
+    <!-- <link href="./resources/reset.css" type="text/css" rel="stylesheet" /> -->
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <script src="moment.js"></script>
+    <script src="livestamp.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <a href="index.html">
+          <img src="https://f4.bcbits.com/img/0009914515_21.jpg" alt="logo" />
+          <h1 class="">Primitive Speech</h1>
+        </a>
+      </div>
+
+      <nav>
+        <div class="header-menu">
+          <ul class="menu" role="presentation">
+            <li class="menu-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="menu-item">
+              <a href="signUp.html">Account</a>
+            </li>
+            <!-- <li class="menu-item">
+                <a href="#">Settings</a>
+              </li> -->
+            <li class="menu-item">
+              <a href="">Ragnarok</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="feed-title">
+      <h3>Look at This</h3>
+    </div>
+
+    <section class="tweets">
+      <div class="tweets-left">
+        <form id="form1" action="index.html">
+          <p>Say something</p>
+          <input class="input-field" type="text" placeholder="Say..." name="tweet" value="" required>
+          <input class="input-field submit-buttons" type="submit" name="tweet" value="go" required>
+        </form>
+        <form id="form2" action="index.html">
+          <p>Seek someone</p>
+          <input id="searchTerm" class="input-field" type="text" placeholder="ex. @username" name="tweet-search" value="" required>
+          <input class="input-field submit-buttons" type="submit" name="tweet" value="go" required>
+        </form>
+        <div class="tweets-right-mobile">
+          <a id="refresh-mobile" class="buttons-mobile" href="#">Refresh</a>
+          <a id="log-out-mobile" class="buttons-mobile" href="#">Log Out</a>
+          <a id="go-back-mobile" class="buttons-mobile" href="#">go back</a>
+        </div>
+      </div>
+
+      <div class="tweets-middle">
+        <div class="feed-container">
+          <div class="feed">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="tweets-right">
+        <div class="buttons">
+          <a id="refresh" class="btn_1" href="#">Refresh</a>
+          <a id="log-out" class="btn_1" href="#">Log Out</a>
+          <a id="go-back" class="btn_1" href="#">go back</a>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="input-tweet">
+
+    </div>
+
+    <footer>
+      <div class="footer">
+        <a href="http://www.jossendal.com">
+          <p>&copy Jossendal Development</p>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      $(document).ready(function () {
+
+        var unixTime = new Date().toISOString();
+        var allTweets = document.getElementsByClassName('tweet-style');
+        var allUserNames = document.getElementsByClassName('user');
+        
+        //sets feed on ready                                             
+        var $feed = $('.feed');
+        $feed.html(' ');
+        var index = streams.home.length - 1;
+        while (index >= 0) {
+          var tweet = streams.home[index];
+          var $tweet = $('<div class="tweet-style"><span data-livestamp="' + unixTime + '"></span><p class="message">' + tweet.message + '</p><p class="posted-by">&mdash; <a class="user" href="#">@' +
+            tweet.user + '</a></div>');
+          $tweet.appendTo($feed);
+          index -= 1;
+        }
+
+        $('#refresh, #refresh-mobile').click(pushNewTweet);
+        
+        $('#go-back, #go-back-mobile').click(unHide);
+        
+        $('.user').click(hide);
+
+        //log out placeholder
+        $('#log-out, #log-out-mobile').click(function () {
+          alert('There is nowhere else to go...')
+        });
+
+        //user added tweet
+        $('#form1').submit(function (e) {
+          e.preventDefault();
+          var unixTime = new Date().toISOString();
+          var message = $('#form1 > input').val();
+          var $tweet = $('<div class="tweet-style"><span data-livestamp="' + unixTime + '"></span><p class="message">' + message + '</p><p class="posted-by">&mdash; <a class="user" href="#">@' + 'Bollocks' + '</a></div>');
+          $tweet.prependTo($feed);
+          $('#form1')[0].reset();
+        });
+
+        //gets users feed by name search
+        $('#form2').submit(function (e) {
+          e.preventDefault();
+          var user = document.getElementById("searchTerm").value;
+          hideOnSearch(user);
+          $('#form2')[0].reset();
+        });
+
+        //adds tweet to feed and removes oldest
+        function pushNewTweet() {
+          var unixTime = new Date().toISOString();
+          var index = streams.home.length - 1;
+          var tweet = streams.home[index];
+          var $tweet = $('<div class="tweet-style"><span data-livestamp="' + unixTime + '"></span><p class="message">' + tweet.message + '</p><p class="posted-by">&mdash; <a class="user" href="#">@' +
+            tweet.user + '</a></div>');
+          $tweet.prependTo($feed);
+          removeOldest();
+        }
+
+        //removes oldest tweet from the feed
+        function removeOldest() {
+          var lastTweet = allTweets.length - 1;
+          $(allTweets[lastTweet]).remove()
+        }
+
+        //adds display: none to users other than selected
+        function hide() {
+          var user = $(this).text()//.trim().substring(1);
+          for (i = 0; i < allUserNames.length; i++) {
+            if (user != $(allUserNames[i]).text()) {
+              $(allTweets[i]).toggle('slow');
+            } 
+          }
+          $('#go-back').toggle('slow');
+          $('#go-back-mobile').toggle('slow');
+        }
+
+        //shows removed tweets and toggles go-back button
+        function unHide() {
+          for (i = 0; i < allTweets.length; i++) {
+            if (allTweets[i].style.display == 'none') {
+              $(allTweets[i]).toggle('slow');
+            }
+          }
+          $('#go-back').toggle('slow');
+          $('#go-back-mobile').toggle('slow');
+        }
+
+        //hides tweets of unselected username and toggles go-back button
+        function hideOnSearch(user) {
+          for (i = 0; i < allUserNames.length; i++) {
+            if (user != $(allUserNames[i]).text()) {
+              $(allTweets[i]).toggle('slow');
+            }
+          }
+          $('#go-back').toggle('slow');
+          $('#go-back-mobile').toggle('slow');
+        }
+
+      });
+
+    </script>
+  </body>
+</html>

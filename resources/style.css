@@ -1,0 +1,323 @@
+/* Universal Styling */
+
+* {
+  /* border: 1px solid #FFF; */
+}
+
+@font-face {
+  font-family: Norse;
+  src: url("../resources/fonts/Norse.otf") format("opentype");
+}
+
+body {
+  color: #484748;
+  font-size: 16px;
+  font-family: Helvetica;
+  background-image: url(https://f4.bcbits.com/img/0009914075_130.jpg);
+}
+
+div {
+  display: block;
+}
+
+/* header section  */
+header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 6px inset antiquewhite;
+}
+
+header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.25rem;
+  font-family: "Norse";
+}
+
+.header-logo img {
+  padding-right: 2rem;
+}
+
+.header-menu .menu {
+  font-size: 1.4rem;
+  font-family: "Norse";
+}
+
+.header-logo img, .header-logo h1 {
+  color: antiquewhite;
+  height: 45px;
+  padding-left: 24px;
+}
+
+ul li {
+  display: inline-block;
+  margin: 0 1.2rem;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: #484748;
+  font-weight: 550;
+}
+
+/* feeder section */
+
+.tweets {
+  display: flex;
+  justify-content: center;
+  height: 900px;
+}
+
+/* feeder section left */
+
+.tweets-left {
+  text-align: center;
+  width: 35%;
+}
+
+.tweets-left p {
+    color: antiquewhite;
+    font-family: "Norse";
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    line-height: 1.7rem;
+}
+
+.input-field {
+   background-color: antiquewhite;
+   padding: 0.2rem 0.2rem;
+   margin: 0.7rem 0.5rem;
+   border-radius: 10px;
+}
+
+.submit-buttons {
+  font-family: "Norse";
+  color: rgb(110, 30, 30);
+  padding: 0.3rem 1rem;
+}
+
+/* feeder section middle */
+
+.tweets-middle {
+  width: 60%;
+  overflow: hidden;
+}
+
+.search-found {
+    text-decoration: underline;
+}
+
+.tweet-style {
+    padding: 1rem 1rem 0 1rem;
+    width: 95%;
+    border-top: 6px inset antiquewhite;
+    text-align: left;
+}
+
+.tweet-style span {
+    font-size: 0.7rem;
+}
+
+.feed-container {
+    justify-content: center;
+    background-color: #030305;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.feed-title {
+    text-align: center;
+    color: antiquewhite;
+    padding: 0.5rem 0;
+    font-size: 1.5rem;
+    font-family: "Norse";
+    letter-spacing: 0.5em;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    color: antiquewhite;
+    line-height: 1.2rem;
+}
+
+.user {
+    color: rgb(202, 105, 102);
+    text-decoration: none;
+}
+
+/* feeder section right */
+
+.tweets-right {
+  display: flex;
+  justify-content: center;
+  width: 35%;
+}
+
+.tweets-right-mobile {
+  display: none;
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 3rem;
+}
+
+#go-back, #go-back-mobile{
+    display: none;
+}
+
+.btn_1 {
+  display: block;
+  background-color: antiquewhite;
+  color: rgb(110, 30, 30);
+  padding: 0.3rem 1rem 0.1rem;
+  text-decoration: none;
+  /* text-align: center; */
+  font-family: "Norse";
+  font-size: 2rem;
+  margin: 1.2rem 1rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 2px #494949;
+     -moz-box-shadow: 4px 4px 2px #494949;
+          box-shadow: 4px 4px 2px #494949;
+}
+
+.btn_1:hover, .submit-buttons:hover, .buttons-mobile:hover, 
+.btn_1:visited:hover, .submit-buttons:visited:hover .buttons-mobile:visited:hover {
+  color: #fff;
+  background-color: rgb(44, 25, 25);
+}
+
+.btn_1:active, .submit-hover:active,
+.btn_1:visited:active, .submit-buttons:active {
+  color: #fff;
+  background-color: rgb(44, 25, 25);
+}
+
+@media only screen and (max-width: 1600px) {
+    .buttons {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+  .tweets-right {
+    display: none;
+  }
+
+  .tweets-right-mobile {
+    display: block;
+  }
+
+  .buttons-mobile {
+    display: block;
+    background-color: antiquewhite;
+    margin-left: 0;
+    color: rgb(110, 30, 30);
+    text-decoration: none;
+    text-align: center;
+    font-family: "Norse";
+    font-size: 1rem;
+    margin: 1.2rem 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 2px #494949;
+    -moz-box-shadow: 4px 4px 2px #494949;
+    box-shadow: 4px 4px 2px #494949;
+  }
+
+  .header-logo img {
+    color: antiquewhite;
+    height: 35px;
+    padding-left: 1rem;
+  }
+
+  .header-logo h1 {
+    padding-left: 0.5rem;
+  }
+
+  .menu-item:last-child {
+    display: none;
+  }
+}
+
+/* end times AKA the end result of social media*/
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100rem;
+  height: 60rem;
+}
+
+.finalMsg {
+  font-family: "Norse";
+  letter-spacing: 0.5em;
+  text-align: center;
+  padding: 2rem 0;
+  color: red;
+}
+
+/* sign up section */
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: antiquewhite;
+}
+
+.sign-title {
+  font-family: "Norse";
+  font-size: 3rem;
+  text-align: center;
+}
+
+.sign-forms {
+  text-align: center;
+  font-size: 2rem;
+  line-height: 3rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  align-items: center;
+}
+
+/* footer section */
+
+.footer {
+  text-align: right;
+  padding: 2rem;
+  height: 30px;
+  color: antiquewhite;
+  border-top: 6px inset antiquewhite;
+}
+
+.footer a {
+  text-decoration: none;
+  color: antiquewhite;
+}
